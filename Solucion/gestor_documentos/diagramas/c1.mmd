@@ -1,19 +1,19 @@
 graph TB
     User[👤 Usuario/Administrador<br/>Persona que gestiona reportes]
-  
+    
     System[📊 Sistema de Generación<br/>de Reportes<br/>--<br/>Genera reportes de ventas,<br/>inventario y financieros en<br/>múltiples formatos y métodos<br/>de entrega]
-  
+    
     EmailSystem[📧 Sistema de Email<br/>Sistema Externo<br/>--<br/>Envía reportes por correo]
-  
+    
     CloudStorage[☁️ Almacenamiento Cloud<br/>Sistema Externo<br/>--<br/>Almacena reportes en la nube]
-  
+    
     FileSystem[💾 Sistema de Archivos<br/>Sistema Externo<br/>--<br/>Guarda reportes localmente]
-  
+    
     User -->|Solicita reportes| System
     System -->|Envía reportes| EmailSystem
     System -->|Sube reportes| CloudStorage
     System -->|Guarda reportes| FileSystem
-  
+    
     style System fill:#1168bd,stroke:#0b4884,color:#ffffff
     style User fill:#08427b,stroke:#052e56,color:#ffffff
     style EmailSystem fill:#999999,stroke:#6b6b6b,color:#ffffff

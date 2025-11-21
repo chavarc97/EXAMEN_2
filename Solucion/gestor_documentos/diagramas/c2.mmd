@@ -1,32 +1,32 @@
-raph TB
+graph TB
     User["👤 Usuario/Administrador"]
-  
+    
     subgraph Sistema["Sistema de Generación de Reportes"]
         API["🔌 API de Reportes<br/>Python Application<br/>Interfaz principal"]
-  
+        
         Engine["⚙️ Motor de Reportes<br/>Python Module<br/>Lógica de negocio"]
-  
+        
         Format["📄 Módulo de Formatos<br/>Python Module<br/>PDF, Excel, HTML"]
-  
+        
         Delivery["📮 Módulo de Entrega<br/>Python Module<br/>Email, Download, Cloud"]
-  
+        
         DB[("📚 Historial<br/>In-Memory<br/>Registro de reportes")]
     end
-  
+    
     Email["📧 Sistema de Email"]
     Cloud["☁️ Cloud Storage"]
     Files["💾 File System"]
-  
+    
     User -->|Solicita| API
     API -->|Genera| Engine
     Engine -->|Formatea| Format
     Engine -->|Entrega| Delivery
     Engine -->|Registra| DB
-  
+    
     Delivery -->|Envía| Email
     Delivery -->|Sube| Cloud
     Delivery -->|Guarda| Files
-  
+    
     style API fill:#1168bd,stroke:#0b4884,color:#ffffff
     style Engine fill:#1168bd,stroke:#0b4884,color:#ffffff
     style Format fill:#1168bd,stroke:#0b4884,color:#ffffff
