@@ -1,0 +1,76 @@
+graph TB
+    Controller["ReportController<br/>Maneja solicitudes"]
+  
+    Factory["ReportFactory<br/>Factory Pattern<br/>Crea generadores"]
+  
+    Builder["ReportBuilder<br/>Builder Pattern<br/>Construye reportes"]
+  
+    IGen["IReportGenerator<br/>Interface - DIP"]
+  
+    Sales["SalesReportGenerator<br/>SRP"]
+  
+    Inventory["InventoryReportGenerator<br/>SRP"]
+  
+    Financial["FinancialReportGenerator<br/>SRP"]
+  
+    IFormat["IFormatStrategy<br/>Strategy Pattern<br/>OCP + DIP"]
+  
+    PDF["PDFFormatter"]
+  
+    Excel["ExcelFormatter"]
+  
+    HTML["HTMLFormatter"]
+  
+    IDelivery["IDeliveryStrategy<br/>Strategy Pattern<br/>OCP + DIP"]
+  
+    Email["EmailDelivery"]
+  
+    Download["DownloadDelivery"]
+  
+    Cloud["CloudDelivery"]
+  
+    DB[("Historial<br/>Reportes")]
+  
+    Controller -->|solicita| Factory
+    Factory -->|crea| Sales
+    Factory -->|crea| Inventory
+    Factory -->|crea| Financial
+  
+    Sales -.->|implementa| IGen
+    Inventory -.->|implementa| IGen
+    Financial -.->|implementa| IGen
+  
+    Builder -->|usa| IGen
+    Builder -->|usa| IFormat
+    Builder -->|usa| IDelivery
+    Builder -->|registra| DB
+  
+    PDF -.->|implementa| IFormat
+    Excel -.->|implementa| IFormat
+    HTML -.->|implementa| IFormat
+  
+    Email -.->|implementa| IDelivery
+    Download -.->|implementa| IDelivery
+    Cloud -.->|implementa| IDelivery
+  
+    style Controller fill:#4A90E2,stroke:#2E5C8A,color:#fff
+    style Factory fill:#4A90E2,stroke:#2E5C8A,color:#fff
+    style Builder fill:#4A90E2,stroke:#2E5C8A,color:#fff
+  
+    style IGen fill:#F5A623,stroke:#C17D11,color:#000
+    style IFormat fill:#F5A623,stroke:#C17D11,color:#000
+    style IDelivery fill:#F5A623,stroke:#C17D11,color:#000
+  
+    style Sales fill:#7ED321,stroke:#5FA319,color:#000
+    style Inventory fill:#7ED321,stroke:#5FA319,color:#000
+    style Financial fill:#7ED321,stroke:#5FA319,color:#000
+  
+    style PDF fill:#50E3C2,stroke:#3AB09E,color:#000
+    style Excel fill:#50E3C2,stroke:#3AB09E,color:#000
+    style HTML fill:#50E3C2,stroke:#3AB09E,color:#000
+  
+    style Email fill:#BD10E0,stroke:#9012AB,color:#fff
+    style Download fill:#BD10E0,stroke:#9012AB,color:#fff
+    style Cloud fill:#BD10E0,stroke:#9012AB,color:#fff
+  
+    style DB fill:#D0021B,stroke:#A00116,color:#fff
