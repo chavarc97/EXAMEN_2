@@ -1,0 +1,25 @@
+graph TB
+    Customer["👤 Cliente<br/>Usuario que realiza compras"]
+    
+    System["🛒 Sistema de Notificaciones<br/>de Pedidos<br/>--<br/>Procesa pedidos y envía<br/>notificaciones multicanal<br/>Email, SMS, Push"]
+    
+    EmailService["📧 Servicio de Email<br/>Sistema Externo<br/>--<br/>SMTP para envío de correos"]
+    
+    SMSGateway["📱 Gateway SMS<br/>Sistema Externo<br/>--<br/>Proveedor de mensajería SMS"]
+    
+    PushService["🔔 Servicio Push<br/>Sistema Externo<br/>--<br/>Firebase/APNs para<br/>notificaciones push"]
+    
+    Customer -->|Realiza pedido| System
+    System -->|Envía confirmación| EmailService
+    System -->|Envía SMS| SMSGateway
+    System -->|Envía notificación| PushService
+    
+    EmailService -.->|Notifica| Customer
+    SMSGateway -.->|Notifica| Customer
+    PushService -.->|Notifica| Customer
+    
+    style System fill:#1168bd,stroke:#0b4884,color:#ffffff
+    style Customer fill:#08427b,stroke:#052e56,color:#ffffff
+    style EmailService fill:#999999,stroke:#6b6b6b,color:#ffffff
+    style SMSGateway fill:#999999,stroke:#6b6b6b,color:#ffffff
+    style PushService fill:#999999,stroke:#6b6b6b,color:#ffffff

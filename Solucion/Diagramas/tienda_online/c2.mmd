@@ -1,0 +1,34 @@
+graph TB
+    Customer["👤 Cliente"]
+    
+    subgraph Sistema["Sistema de Notificaciones de Pedidos"]
+        API["🔌 Order API<br/>Python Application<br/>Recibe y valida pedidos"]
+        
+        Processor["⚙️ Order Processor<br/>Python Module<br/>Procesa lógica de pedidos"]
+        
+        NotifManager["📬 Notification Manager<br/>Python Module<br/>Gestiona envío multicanal"]
+        
+        History[("📚 Notification History<br/>In-Memory Storage<br/>Registro de notificaciones")]
+    end
+    
+    EmailSvc["📧 Email Service"]
+    SMSGw["📱 SMS Gateway"]
+    PushSvc["🔔 Push Service"]
+    
+    Customer -->|Realiza pedido| API
+    API -->|Procesa| Processor
+    Processor -->|Notifica| NotifManager
+    NotifManager -->|Registra| History
+    
+    NotifManager -->|Envía| EmailSvc
+    NotifManager -->|Envía| SMSGw
+    NotifManager -->|Envía| PushSvc
+    
+    style API fill:#1168bd,stroke:#0b4884,color:#ffffff
+    style Processor fill:#1168bd,stroke:#0b4884,color:#ffffff
+    style NotifManager fill:#1168bd,stroke:#0b4884,color:#ffffff
+    style History fill:#1168bd,stroke:#0b4884,color:#ffffff
+    style Customer fill:#08427b,stroke:#052e56,color:#ffffff
+    style EmailSvc fill:#999999,stroke:#6b6b6b,color:#ffffff
+    style SMSGw fill:#999999,stroke:#6b6b6b,color:#ffffff
+    style PushSvc fill:#999999,stroke:#6b6b6b,color:#ffffff
